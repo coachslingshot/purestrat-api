@@ -9,8 +9,13 @@ import leaderboardRouter from './routes/leaderboard.js';
 
 const PORT = Number(process.env.PORT ?? 4000);
 
-// Accept requests from the game clients (Vite dev) and game server
-const ALLOWED_ORIGINS = /^http:\/\/localhost(:\d+)?$/;
+// Accept requests from local dev, Vercel previews, and the production domain
+const ALLOWED_ORIGINS = [
+    /^http:\/\/localhost(:\d+)?$/,
+    /^https:\/\/.*\.vercel\.app$/,
+    'https://purestratgames.com',
+    'https://www.purestratgames.com'
+];
 
 const app = express();
 app.use(cors({ origin: ALLOWED_ORIGINS }));
